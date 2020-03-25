@@ -1,1 +1,2 @@
 # LaboratoriosFunda
+# Sección 02
