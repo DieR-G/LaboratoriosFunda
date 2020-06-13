@@ -3,6 +3,8 @@
 
 using namespace std;
 
+void segundoDespues(int,int,int);
+
 int main(){
     int hh, mm, ss;
 
@@ -10,6 +12,16 @@ int main(){
     cout << "Ingrese los minutos: "; cin >> mm;
     cout << "Ingrese los segundos: "; cin >> ss;
 
+    segundoDespues(hh,mm,ss);
+
+    return 0;
+}
+
+void segundoDespues(int hh, int mm, int ss){
+    if((int)(hh > 23) || (int)(mm > 59) || (int)(ss > 59)){
+        cout << "La hora ingresada no es adecuada." << endl;
+        return;
+    }
     ss++;
     mm += ss/60;
     hh += mm/60;
@@ -24,6 +36,4 @@ int main(){
     cout << setw(2) << setfill('0') << mm;
     cout << ':';
     cout << setw(2) << setfill('0') << ss;
-
-    return 0;
 }
