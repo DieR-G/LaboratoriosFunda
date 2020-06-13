@@ -18,7 +18,7 @@ int main(){
 }
 
 void segundoDespues(int hh, int mm, int ss){
-    if((int)(hh > 23) || (int)(mm > 59) || (int)(ss > 59)){
+    if((hh > 23) || (mm > 59) || (ss > 59)){
         cout << "La hora ingresada no es adecuada." << endl;
         return;
     }
