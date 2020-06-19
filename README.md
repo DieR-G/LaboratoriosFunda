@@ -36,3 +36,29 @@ calcule y dé como resultado de salida los valores de día, mes y año
 correspondientes al día siguiente. Su programa debe tomar en cuenta años
 bisiestos. Si la fecha digitada no es válida su programa no calculará el día
 siguiente e indicará el error de digitacion.
+## Definiciones de los ejercicios de la guía de laboratorio 6:
+* __Ejercicio1:__ Escriba un programa que le pida al usuario cierta cantidad de números enteros y estos
+se almacenen en un arreglo. Dicho arreglo tendrá un tamaño definido por el usuario, así
+que solicite primero la cantidad de elementos a introducir, luego cree el arreglo y, por
+último, introduzca los valores.
+* __Ejercicio2:__ Amplíe el problema anterior escribiendo una función que reciba el arreglo como
+argumento y su longitud; y retorne el promedio de los elementos que lo componen.
+* __Ejercicio3:__ Luego de un experimento le piden entregar un reporte con todas las mediciones
+realizadas, junto con la incerteza que generan las mediciones.
+* __Ejercicio4:__ Dados dos arreglos de igual longitud, escriba un programa que genere un tercer arreglo
+cuyos valores corresponden a la suma de los elementos de las mismas posiciones de
+los dos arreglos anteriores. Escriba funciones para:
+1. Leer arreglo. Esta función recibe dos argumentos: un arreglo y la cantidad de
+elementos a leer; luego llena el arreglo.
+2.  Realizar la suma de arreglos. Esta función recibe cuatro argumentos: los dos
+arreglos, la longitud de ambos y el arreglo resultante de la suma.
+3. Desplegar el resultado. Recibe el arreglo resultante de la suma y despliega su
+contenido.
+4. La función main. Que obviamente controla las llamadas a las funciones de los
+literales anteriores.
+* __Ejercicio5:__ Elabore un programa que llene un arreglo con los 100 primeros números enteros
+impares y los muestre en forma descendente. En la primera casilla estará el 1, en la
+segunda el 3, y así sucesivamente. El proceso de impresión iniciará desplegando el
+mayor de los valores y terminará desplegando es 1.
+* __Ejercicio6:__ Escriba un programa que, dado un arreglo y un número entero, cuente cuantas veces
+se repite dicho número en el arreglo.
