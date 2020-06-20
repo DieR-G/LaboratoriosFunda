@@ -4,7 +4,7 @@
 using namespace std;
 
 //Llena el arreglo con los primeros 100 valores impares
-//Como se utiliza un vector no es necesario especificar al tamaño
+//Como se utiliza un vector no es necesario pasar el tamaño como argumento
 void llenar(vector<int> &arr){
     for (int i = 0; i < arr.size(); i++){
         arr[i] = 2*i + 1;
