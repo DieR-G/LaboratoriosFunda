@@ -53,10 +53,19 @@ void diaDespues( int dd,  int mm, int aa ){
         else{
             dd++;
             mm += dd/diasPorMes(mm,aa);
+            
+
             aa += mm/12;
 
+            dd %= diasPorMes((mm - (dd/diasPorMes(mm,aa)) ),aa);
             mm %= 12;
-            dd %= diasPorMes(mm,aa);
+            
+        }
+        if (dd == 0){
+            dd = 1;
+        }
+        if (mm == 0){
+            mm = 12;
         }
     }
     //Se muestra la fecha con formato dd/mm/yyyy
