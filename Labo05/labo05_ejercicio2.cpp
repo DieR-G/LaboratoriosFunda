@@ -19,7 +19,7 @@ int main(){
 
 void segundoDespues(int hh, int mm, int ss){
     //Validación que los datos ingresados en la hora sean válidos
-    if((hh > 23) || (mm > 59) || (ss > 59) || (hh < 0) || (mm > 0) || (ss < 0) ){
+    if((hh > 23) || (mm > 59) || (ss > 59) || (hh < 0) || (mm < 0) || (ss < 0) ){
         cout << "La hora ingresada no es adecuada." << endl;
         return;
     }
