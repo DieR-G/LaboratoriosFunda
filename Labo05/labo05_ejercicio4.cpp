@@ -52,7 +52,8 @@ void diaDespues( int dd,  int mm, int aa ){
         //Caso contrario se añade un día y se hacen los ajustes necesarios
         else{
             dd++;
-            mm += dd/diasPorMes(mm,aa);
+            int aux = diasPorMes(mm,aa);
+            mm += (dd/aux == 1)?0:dd/aux;
             
 
             aa += mm/12;
