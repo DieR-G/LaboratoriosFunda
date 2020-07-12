@@ -1,31 +1,34 @@
 #include<iostream>
 #include<iomanip>
-
 using namespace std;
-
-const int longCad = 20;
 //Estructura para guardar los productos
+const int longCad = 20;
 struct costoPorArticulo{
     char nombreArticulo[longCad + 1];
-    int cantidad = 0;
-    float precio = 0.0f;
-    float costoPorArticulo = 0.0f;
+    int cantidad;
+    float precio;
+    float costoPorArticulo;
 };
 
 //Prototipos
-void leerProductos(costoPorArticulo *articulos, int t);
-void calcularCosto(costoPorArticulo &articulo);
-void mostrarArticulos(costoPorArticulo *articulos, const int t);
-void mostrarTotal(costoPorArticulo *articulos, const int t);
+void leerProductos(costoPorArticulo *articulos, const int tam);
+void calcularCosto(costoPorArticulo *articulos, const int tam);
+void mostrarArticulos(costoPorArticulo *articulos, const int tam);
+void mostrarTotal(costoPorArticulo *articulos, const int tam);
 
 int main(){
     int numArticulos = 0;
-    cout << "Bienvenido/a al programa.\nIngrese la cantidad de artículos a comprar: "; 
-    cin >> numArticulos;
+    //Validación para recibir únicamente cantidades positivas
+    do{
+        cout << "Bienvenido/a al programa.\nIngrese la cantidad de artículos a comprar: "; 
+        cin >> numArticulos;
+    }while(numArticulos <= 0);
+    
     //Se declara el total de artículos como un arreglo dinámico de la dimensión que ingresó el usuario
     costoPorArticulo *factura = new costoPorArticulo[numArticulos];
     
     leerProductos(factura, numArticulos);
+    calcularCosto(factura,numArticulos);
     mostrarArticulos(factura, numArticulos);
     mostrarTotal(factura, numArticulos);
     //Se libera la memoria donde se almacenaron los artículos
@@ -34,40 +37,48 @@ int main(){
 }
 
 //Función para leer los datos de cada producto
-void leerProductos(costoPorArticulo *articulos, int t){
-    for(int i = 0; i < t; i++){
+void leerProductos(costoPorArticulo *articulos, int tam){
+    for(int i = 0; i < tam; i++){
         cout << "\nIngrese los datos del producto " << i + 1 << " \n";
         cout << "Nombre del artículo: "; 
-        //Se utiliza el ignore para borrar el caracter '\n' que quedó en el buffer por la entrada anterior
+        //Se utiliza el ignore para borrar el caracter '\n' que quedó en el búfer por la entrada anterior
         cin.ignore();
         cin.getline(articulos[i].nombreArticulo, 20);
-
-        cout << "Cantidad del artículo: "; 
-        cin >> articulos[i].cantidad;
-
-        cout << "Precio del artículo: $"; 
-        cin >> articulos[i].precio;
-
+        
+        do{
+            cout << "Cantidad del artículo: "; 
+            cin >> articulos[i].cantidad;
+        } while (articulos[i].cantidad <= 0);
+        
+        do{
+            cout << "Precio del artículo: $"; 
+            cin >> articulos[i].precio;
+        } while (articulos[i].precio <= 0.0f);
+        
         cout << '\n';
-        //Se calcula el costo total de cada artículo
-        calcularCosto(articulos[i]);
     }
     
 }
 
 //Función para obtener el costo total según la cantidad de artículos y su precio
-void calcularCosto(costoPorArticulo &articulo){
-    articulo.costoPorArticulo = (float)articulo.cantidad * articulo.precio;
+void calcularCosto(costoPorArticulo *articulos, int tam){
+    for(int i = 0; i < tam; i++)
+        articulos[i].costoPorArticulo = (float)articulos[i].cantidad * articulos[i].precio;
 }
 
-void mostrarArticulos(costoPorArticulo *articulos, const int t){
+void mostrarArticulos(costoPorArticulo *articulos, const int tam){
     //Cabecera de la tabla
     cout << "┌─────┬─────────────────────┬──────────┬────────────┬────────────────┐\n";
     cout << "│ n°  │ Nombre del producto │ Cantidad │   Precio   │ Valor de venta │\n";
     cout << "├─────┼─────────────────────┼──────────┼────────────┼────────────────┤\n";
     
     //Se muestra cada dato del producto manteniendo el formato de tabla
-    for(int i = 0; i < t; i++){
+    //left/rigth definen la alineación que va a tener el texto en esa línea
+    //setfill establece el caracter de relleno
+    //setw establece el ancho mínimo que debe tener cada línea, si el ancho 
+    //es menor rellena lo que falte con el caracter especificado en setfill
+    //fixed y setprecision(2) hacen que se muestren los números flotantes siempre con 2 decimales
+    for(int i = 0; i < tam; i++){
         cout << "│ ";
         cout << setfill(' ') << left << setw(4) << i+ 1;
 
@@ -85,7 +96,7 @@ void mostrarArticulos(costoPorArticulo *articulos, const int t){
         cout << " │\n";
 
         //Se verifica si no es el último producto para mantener el formato de la tabla 
-        if(i != t - 1)
+        if(i != tam - 1)
             cout << "├─────┼─────────────────────┼──────────┼────────────┼────────────────┤\n";
         else
             cout << "├─────┴─────────┬───────────┴──────────┴────────────┴────────────────┤\n";
@@ -93,9 +104,9 @@ void mostrarArticulos(costoPorArticulo *articulos, const int t){
 }
 
 //Función que calcula y muestra el total de los artículos
-void mostrarTotal(costoPorArticulo *articulos, const int t){
+void mostrarTotal(costoPorArticulo *articulos, const int tam){
     float total = 0.0f;
-    for(int i = 0; i < t; i++){
+    for(int i = 0; i < tam; i++){
         total += articulos[i].costoPorArticulo; 
     }
     //Muestra el total a pagar con formato
